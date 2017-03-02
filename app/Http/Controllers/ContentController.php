@@ -13,7 +13,7 @@ class ContentController extends Controller
         return view('content.home')->with('posts', $posts);
     }
 
-    public function post($slug)
+    public function viewPost($slug)
     {
         $post = Post::where('slug', $slug)->first();
         if ($post && $post->exists) {

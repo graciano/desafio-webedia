@@ -2,13 +2,13 @@
 
 @section('content')
 <header>
-    <h1>
+    <h2>
         A 
         <a href="{{ route('home') }}">
             <span class="wb-logo">web<span>edia&trade;</span></span>
         </a>
         group site.
-    </h1>
+    </h2>
     <nav class="nav-menu">
         <ul>
             <li><a href="">category</a></li>
