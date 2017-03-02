@@ -14,3 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login', 'Auth\AuthController@login')->name('login');
+
+Route::post('/logout', 'Auth\AuthController@logout')->middleware('auth');
+
+Route::group(['prefix' => 'social'], function () {
+  Route::get('/login/{driver?}', 'Auth\AuthController@redirectToProvider')
+        ->name('social.login');
+  Route::get(
+             '/callback/{driver?}',
+             'Auth\AuthController@handleProviderCallback'
+             );
+});
+
+Route::get('/home', 'HomeController@index');
