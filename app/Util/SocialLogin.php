@@ -22,8 +22,6 @@ class SocialLogin
         $driver_id = $driver.'_id';
         $driver_token = $driver.'_token';
         $userInfo = self::getUserInfo($socialiteUser, $driver);
-        // dd($socialiteUser);
-        // dd($userInfo);
 
         $user = User::where($driver_id, $socialiteUser->id)->first();
         if (!self::userExists($user)) {
