@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ContentController@home')->name('home');
 
 Route::get('/login', 'Auth\AuthController@login')->name('login');
 
@@ -28,4 +26,6 @@ Route::group(['prefix' => 'social'], function () {
              );
 });
 
-Route::get('/home', 'HomeController@index');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+
+Route::get('/{slug}', 'ContentController@viewPost')->name('content.post');
