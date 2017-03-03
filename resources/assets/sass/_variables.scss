@@ -14,16 +14,13 @@ $component-color: #818181;
 $text-color: #636b6f;
 $logo-color: #000;
 $highlight-color: #fa7936;
-
-// Buttons
-$btn-default-color: $text-color;
-
-// Inputs
-$input-border: lighten($text-color, 40%);
-$input-border-focus: lighten($text-color, 25%);
-$input-color-placeholder: lighten($text-color, 30%);
+$strip-color: #fff;
 
 // breakpoints
 $min-width: 320px;
-$desktop: min-width 600px;
+$break-desktop: 800px;
+$desktop: min-width $break-desktop;
+$not-desktop: max-width $break-desktop;
 
+// push-button size
+$push-button-size: 30px;
