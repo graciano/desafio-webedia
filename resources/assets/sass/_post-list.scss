@@ -1,0 +1,51 @@
+.post-list {
+    @include component();
+    @include reset-list();
+}
+
+.post-card {
+    background: $component-bg;
+    border-radius: 3px;
+    display: block;
+    padding: .5em;
+    margin-top: 1em; 
+    margin-bottom: 1em; 
+    width: 100%;
+    img {
+        max-height: 40vh;
+        object-fit: cover;
+        width: 100%;
+    }
+    .title, .lead {
+        color: $highlight-color;
+        font-weight: 400;
+    }
+    .preview {
+        font-weight: bold;
+    }
+    .lead {
+        margin-top: 0;
+    }
+    hr {
+        color: $highlight-color;
+        width: 30%;
+    }
+}
+
+@include breakpoint($desktop) {
+    .post-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        li{
+            width: 100%;
+        }
+    }
+    .post-list > li:nth-child(n+2) {
+        vertical-align: top;
+        width: 48%;
+        .lead, .excerpt, hr {
+            display: none;
+        }
+    }
+}

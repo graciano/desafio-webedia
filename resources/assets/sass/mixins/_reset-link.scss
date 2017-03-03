@@ -1,0 +1,10 @@
+@mixin reset-link($color: $text-color, $hover-color: $text-color) {
+    &, &:hover, &:visited {
+        color: $color;
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: $hover-color;
+    }
+}

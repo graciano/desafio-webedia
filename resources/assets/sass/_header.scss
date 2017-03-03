@@ -1,0 +1,53 @@
+body > header {
+    font-size: 10px;
+    text-align: center;
+    text-transform: lowercase;
+    padding-left: .5em;
+    @include breakpoint ($desktop) {
+        font-size: 8px;
+    }
+}
+
+.wb-logo {
+    @include reset-link($logo-color, lighten($logo-color, 10%));
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 1.7em;
+    font-weight: bold;
+    & > .regular {
+        font-weight: 400;
+    }
+    & > .trade {
+        font-size: .6em;
+        position: relative;
+        top: -0.1em;
+    }
+}
+
+.nav-menu {
+    background: $component-bg;
+    box-shadow: 0px 5px 5px -7px rgba(0,0,0,0.75);
+    @include breakpoint($desktop) {
+        display: block;
+    }
+    font-size: 10px;
+    text-transform: uppercase;
+    width: 100%;
+}
+.nav-list {
+    @include reset-list();
+    @include breakpoint($desktop) {
+        @include component();
+        display: flex;
+        justify-content: space-between;
+    }
+    a {
+        display: inline-block;
+        height: 3em;
+        padding-top: 1em;
+        padding-bottom: 1em;
+    }
+    a:hover {
+        background: darken($component-bg, 50%);
+        color: lighten($component-color, 50%);
+    }
+}

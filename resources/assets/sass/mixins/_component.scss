@@ -1,0 +1,10 @@
+@mixin component() {
+    color: $component-color;
+    margin: 0 auto;
+    max-width: 1200px;
+    min-width: 0.95 * $min-width;
+    width: 95%;
+    @include breakpoint($desktop) {
+        width: 90%;
+    }
+}

@@ -1,0 +1,16 @@
+
+.post-content {
+    @include component();
+    border-radius: 3px;
+    margin-bottom: 1em;
+    .cover-image {
+        height: 40vh;
+        object-fit: cover;
+        width: 100%;
+    }
+}
+
+.html-post {
+    background: $component-bg;
+    padding: .5em;
+}
