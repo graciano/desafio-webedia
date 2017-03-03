@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "83f046fb2df9f54ecd17cb919f5d3858",
+    "content-hash": "d1ac9b2676227c573c48cf8635ca12ff",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -201,6 +201,51 @@
                 "parser"
             ],
             "time": "2016-11-02T15:56:58+00:00"
+        },
+        {
+            "name": "graciano/blade-helpers",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/graciano/blade-helpers.git",
+                "reference": "773b230c7725720dd7bb259380434d55177095b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/graciano/blade-helpers/zipball/773b230c7725720dd7bb259380434d55177095b9",
+                "reference": "773b230c7725720dd7bb259380434d55177095b9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.2",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Graciano\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matheus Graciano",
+                    "email": "graciano.dev@gmail.com",
+                    "homepage": "http://graciano.tk",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Helpers for laravel blade template inputs.",
+            "keywords": [
+                "blade",
+                "helper",
+                "input",
+                "laravel"
+            ],
+            "time": "2016-06-07T19:23:50+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

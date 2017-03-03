@@ -7,6 +7,7 @@
     "require": {
         "php": ">=5.6.4",
         "barryvdh/laravel-debugbar": "^2.3",
+        "graciano/blade-helpers": "^1.1",
         "laravel/framework": "5.4.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0"
@@ -19,6 +20,9 @@
     "autoload": {
         "classmap": [
             "database"
+        ],
+        "files":[
+            "vendor/graciano/blade-helpers/src/helpers.php"
         ],
         "psr-4": {
             "App\\": "app/"
