@@ -3,14 +3,17 @@
 @section('content')
 <header>
     <h2>
-        A 
-        <a href="{{ route('home') }}">
-            <span class="wb-logo">web<span>edia&trade;</span></span>
+        A site from
+        <a href="{{ route('home') }}" class="wb-logo">
+            web<span class="regular">edia</span><span class="trade">&trade;</span>
         </a>
-        group site.
+        group
     </h2>
     <nav class="nav-menu">
         <ul>
+            <li><a href="">category</a></li>
+            <li><a href="">category</a></li>
+            <li><a href="">category</a></li>
             <li><a href="">category</a></li>
             <li><a href="">category</a></li>
             <li><a href="">category</a></li>

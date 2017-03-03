@@ -12,5 +12,7 @@
     "laravel-mix": "^0.8.1",
     "lodash": "^4.17.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "breakpoint-sass": "^2.7.1"
+  }
 }
