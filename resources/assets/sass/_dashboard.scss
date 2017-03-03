@@ -2,10 +2,20 @@
     @include component();
     background: $component-bg;
     padding: 1em;
+    min-height: 50vh;
     ul {
         @include reset-list();
     }
     a {
         color: $highlight-color;
     }
+    .avatar {
+        border-radius: 100%;
+        height: 50px;
+        width: 50px;
+    }
+    header {
+        display: flex;
+        justify-content: space-between;      
+     }
 }

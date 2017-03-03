@@ -19,4 +19,5 @@
     <li>No posts found.</li>
     @endforelse
 </ul>
+{!! $posts->links() !!}
 @endsection

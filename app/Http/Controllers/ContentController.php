@@ -9,7 +9,7 @@ class ContentController extends Controller
 {
     public function home()
     {
-        $posts = Post::orderBy('created_at', 'DESC')->paginate();
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(5);
         return view('content.home')->with('posts', $posts);
     }
 

@@ -1,0 +1,11 @@
+.pagination {
+    font-size: 1.1em;
+    text-align: center;
+    a {
+        font-size: 1.2em;
+        @include reset-link($highlight-color);
+    }
+    li {
+        display: inline-block;
+    }
+}

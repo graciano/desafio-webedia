@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Post;
+use Auth;
 
 class DashboardController extends Controller
 {
@@ -23,6 +25,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        return view('dashboard')->with([
+                                       'user' => Auth::user(),
+                                       'posts' => Post::paginate(10)
+                                       ]);
     }
 }
