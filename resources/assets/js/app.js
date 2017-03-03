@@ -2,7 +2,8 @@
 
 //dependencies from webpack
 window.$ = window.jQuery = require('jquery');
-MediumEditor = require('medium-editor');
+let MediumEditor = require('medium-editor');
+const debounce = require('debounce');
 
 //function to send any form in laravel
 // from my gist https://gist.github.com/graciano/4c41cc3c139ae5c7db70
@@ -51,14 +52,19 @@ $(document).ready(function() {
     //creating medium like wysiwyg
     let mediumEditor = new MediumEditor(editorSelector);
 
-    //mutation observer of content editable created bu medium editor
-    // to save post via ajax
-    let observer = new MutationObserver(function(){
+    // creating a debounce, to avoid performance issues
+    // using a one second debounce
+    let debounceSaveChanges = debounce(function(){
+        console.log('saving changes');
         let $form = $("#form-post");
         let $inputHtml = $form.find("input[name='html_content']");
-        $inputHtml.value = $(editorSelector).html();
+        $inputHtml.val($(editorSelector).html());
         sendAjaxFormLaravel($form);
-    });
+    }, 1000);
+
+    //mutation observer of content editable created bu medium editor
+    // to save post via ajax
+    let observer = new MutationObserver(debounceSaveChanges);
     let editor = document.querySelector(editorSelector);
 
     //activating observer in editor element

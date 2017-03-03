@@ -10301,7 +10301,8 @@ return jQuery;
 
 //dependencies from webpack
 window.$ = window.jQuery = __webpack_require__(0);
-MediumEditor = __webpack_require__(3);
+var MediumEditor = __webpack_require__(3);
+var debounce = __webpack_require__(12);
 
 //function to send any form in laravel
 // from my gist https://gist.github.com/graciano/4c41cc3c139ae5c7db70
@@ -10348,14 +10349,19 @@ $(document).ready(function () {
     //creating medium like wysiwyg
     var mediumEditor = new MediumEditor(editorSelector);
 
-    //mutation observer of content editable created bu medium editor
-    // to save post via ajax
-    var observer = new MutationObserver(function () {
+    // creating a debounce, to avoid performance issues
+    // using a one second debounce
+    var debounceSaveChanges = debounce(function () {
+        console.log('saving changes');
         var $form = $("#form-post");
         var $inputHtml = $form.find("input[name='html_content']");
-        $inputHtml.value = $(editorSelector).html();
+        $inputHtml.val($(editorSelector).html());
         sendAjaxFormLaravel($form);
-    });
+    }, 1000);
+
+    //mutation observer of content editable created bu medium editor
+    // to save post via ajax
+    var observer = new MutationObserver(debounceSaveChanges);
     var editor = document.querySelector(editorSelector);
 
     //activating observer in editor element
@@ -18449,6 +18455,81 @@ process.umask = function() { return 0; };
 
 __webpack_require__(1);
 module.exports = __webpack_require__(2);
+
+
+/***/ }),
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = Date.now || now
+
+function now() {
+    return new Date().getTime()
+}
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/**
+ * Module dependencies.
+ */
+
+var now = __webpack_require__(11);
+
+/**
+ * Returns a function, that, as long as it continues to be invoked, will not
+ * be triggered. The function will be called after it stops being called for
+ * N milliseconds. If `immediate` is passed, trigger the function on the
+ * leading edge, instead of the trailing.
+ *
+ * @source underscore.js
+ * @see http://unscriptable.com/2009/03/20/debouncing-javascript-methods/
+ * @param {Function} function to wrap
+ * @param {Number} timeout in ms (`100`)
+ * @param {Boolean} whether to execute at the beginning (`false`)
+ * @api public
+ */
+
+module.exports = function debounce(func, wait, immediate){
+  var timeout, args, context, timestamp, result;
+  if (null == wait) wait = 100;
+
+  function later() {
+    var last = now() - timestamp;
+
+    if (last < wait && last > 0) {
+      timeout = setTimeout(later, wait - last);
+    } else {
+      timeout = null;
+      if (!immediate) {
+        result = func.apply(context, args);
+        if (!timeout) context = args = null;
+      }
+    }
+  };
+
+  return function debounced() {
+    context = this;
+    args = arguments;
+    timestamp = now();
+    var callNow = immediate && !timeout;
+    if (!timeout) timeout = setTimeout(later, wait);
+    if (callNow) {
+      result = func.apply(context, args);
+      context = args = null;
+    }
+
+    return result;
+  };
+};
 
 
 /***/ })

@@ -65,8 +65,7 @@ class PostController extends Controller
         // todo validate request
         $post->fill($request->all());
         $post->save();
-        dd($request->all());
-        return response('Post saved')->json($request->all());
+        return response('Post saved');//->json($request->all());
     }
 
     /**
