@@ -1,0 +1,11 @@
+.component {
+    @include component();
+    background: $component-bg;
+    padding: 1em;
+    ul {
+        @include reset-list();
+    }
+    a {
+        color: $highlight-color;
+    }
+}

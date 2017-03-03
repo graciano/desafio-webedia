@@ -26,6 +26,6 @@ Route::group(['prefix' => 'social'], function () {
              );
 });
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::get('/{slug}', 'ContentController@viewPost')->name('content.post');
