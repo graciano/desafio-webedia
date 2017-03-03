@@ -10,7 +10,7 @@
         group
     </h2>
     <nav class="nav-menu">
-        <ul>
+        <ul class="nav-list">
             <li><a href="">category</a></li>
             <li><a href="">category</a></li>
             <li><a href="">category</a></li>

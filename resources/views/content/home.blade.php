@@ -4,7 +4,7 @@
 <ul class="post-list">
     @forelse($posts as $post)
     <li>
-        <a href="{{ url($post->slug) }}" title="{{ $post->title }}">
+        <a href="{{ url($post->slug) }}" title="{{ $post->title }}" class="post-card">
             <section class="post-info">
                 <h2 class="title">{{ $post->title }}</h2>
                 <p class="preview">{{ $post->preview_text }}</p>

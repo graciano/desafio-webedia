@@ -13,6 +13,7 @@ $component-color: #818181;
 // main colors
 $text-color: #636b6f;
 $logo-color: #000;
+$highlight-color: #fa7936;
 
 // Buttons
 $btn-default-color: $text-color;
@@ -24,5 +25,5 @@ $input-color-placeholder: lighten($text-color, 30%);
 
 // breakpoints
 $min-width: 320px;
-$desktop: min-width 700px;
+$desktop: min-width 600px;
 
