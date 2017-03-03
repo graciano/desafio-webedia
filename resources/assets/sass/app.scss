@@ -182,15 +182,19 @@ body > header {
     }
 }
 @include breakpoint($not-desktop) {
-    .pushmenu { /*this is the nav*/
-      width: 240px;
+    .pushmenu {
       height: 100%;
-      top: 0;
-      z-index: 1000;
       position:fixed;
+      top: 0;
+      width: 240px;
+      z-index: 1000;
     }
     .pushmenu li {
         display: block;
+        width: 100%;
+    }
+    .pushmenu a {
+        width: 100%;
     }
 }
 
@@ -204,9 +208,9 @@ body > header {
 }
 
 body {
+  left: 0;
   overflow-x: hidden;
   position: relative;
-  left: 0;
 }
 
 .pushmenu-push-toright {
@@ -218,4 +222,20 @@ body {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   transition: all 0.3s ease;  
+}
+
+.post-content {
+    @include component();
+    border-radius: 3px;
+    margin-bottom: 1em;
+    .cover-image {
+        height: 40vh;
+        object-fit: cover;
+        width: 100%;
+    }
+}
+
+.html-post {
+    background: $component-bg;
+    padding: .5em;
 }

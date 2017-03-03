@@ -63,36 +63,11 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {window.$ = window.jQuery = __webpack_require__(4);
-
-$(document).ready(function () {
-    var $menuLeft = $('.pushmenu-left');
-    var $buttonMenu = $('#button-menu');
-
-    $buttonMenu.click(function () {
-        $('body').toggleClass('pushmenu-push-toright');
-        $menuLeft.toggleClass('pushmenu-open');
-    });
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 2 */,
-/* 3 */,
-/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10319,17 +10294,34 @@ return jQuery;
 
 
 /***/ }),
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(0);
-module.exports = __webpack_require__(1);
+/* WEBPACK VAR INJECTION */(function($) {window.$ = window.jQuery = __webpack_require__(0);
+
+$(document).ready(function () {
+    var $menuLeft = $('.pushmenu-left');
+    var $buttonMenu = $('#button-menu');
+
+    $buttonMenu.click(function () {
+        $('body').toggleClass('pushmenu-push-toright');
+        $menuLeft.toggleClass('pushmenu-open');
+    });
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(1);
+module.exports = __webpack_require__(2);
 
 
 /***/ })

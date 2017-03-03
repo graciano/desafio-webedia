@@ -5,10 +5,10 @@
 @endsection
 
 @section('subcontent')
-<article>
+<article class="post-content">
     <h1>{{ $post->title }}</h1>
     <p>{{ $post->lead }}</p>
-    <img src="{{ $post->cover_image }}"/>
+    <img src="{{ $post->cover_image }}" class="cover-image"/>
     <div class="html-post">
         {!! $post->html_content !!}
     </div>
