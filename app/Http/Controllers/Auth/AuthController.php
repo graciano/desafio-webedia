@@ -48,7 +48,7 @@ class AuthController extends Controller
 
     public function login()
     {
-        return redirect(route('social.login'));
+        return view('auth.login')->with('drivers', ['google']);
     }
 
     public function logout()
