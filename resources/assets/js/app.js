@@ -7,10 +7,10 @@ const debounce = require('debounce');
 
 //function to send any form in laravel
 // from my gist https://gist.github.com/graciano/4c41cc3c139ae5c7db70
-var sendAjaxFormLaravel = function(form, callbacks){
-    var formAction = form.attr('action');
-    var formMethod = form.attr('method');
-    var formData;
+let sendAjaxFormLaravel = function(form, callbacks){
+    let formAction = form.attr('action');
+    let formMethod = form.attr('method');
+    let formData;
     if (formMethod.toLowerCase() == 'post') {
         formData = form.serializeArray();
         $.ajaxSetup({
@@ -35,6 +35,11 @@ var sendAjaxFormLaravel = function(form, callbacks){
         }
     },"json");
 };
+let pureTextFromHtml = function(html) {
+    let tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+};
 
 $(document).ready(function() {
     //push menu handling
@@ -48,6 +53,8 @@ $(document).ready(function() {
 
     //text editor handling
     let editorSelector = "#post-editor";
+    //post form
+    let $form = $("#form-post");
     
     //creating medium like wysiwyg
     let mediumEditor = new MediumEditor(editorSelector);
@@ -56,7 +63,6 @@ $(document).ready(function() {
     // using a one second debounce
     let debounceSaveChanges = debounce(function(){
         console.log('saving changes');
-        let $form = $("#form-post");
         let $inputHtml = $form.find("input[name='html_content']");
         $inputHtml.val($(editorSelector).html());
         sendAjaxFormLaravel($form);
@@ -79,20 +85,60 @@ $(document).ready(function() {
         saveChangesObserver.observe(editor, observerOptions);
     } else { 
         //handling new post page
+        // object to check if some of the fields were changed by the user
+        let changedFields = {
+            'title': false,
+            'slug': false,
+            'preview_text': false,
+            'lead': false,
+            'excerpt': false
+        };
+        for (let field in changedFields){
+            if (changedFields.hasOwnProperty(field)) {
+                 $("#field-"+field)
+                    .on('change', function(ev) {
+                        changedFields[field] = true;
+                    });
+            }
+        }
+        //
         let changeHrefObserver;
         let debouceHrefChange = debounce(function() {
-            let $form = $("#form-post");
+            console.log('starting function');
             let $inputHtml = $form.find("input[name='html_content']");
-            let text = $inputHtml.text();
+            $inputHtml.val($(editorSelector).html());
+            //generating values for fields from text if they're not changed
+            // by the user
+            let text = pureTextFromHtml($inputHtml.val());
+            for (let field in changedFields){
+                if (changedFields.hasOwnProperty(field)
+                    && !changedFields[field]
+                    && field != 'slug') {
+
+                    let $input = $("#field-"+field);
+                    let length = parseInt($input.attr('data-length'));
+                    length = isNaN(length)? 10 : length;
+                    length = Math.min(length, text.length);
+                    $input.val(text.substring(0, length));
+                }
+            }
             // save the post if it's bigger than 300 characters and
             // change the window to a edit post one
             if (text.length > 300) {
+                console.log('entered if');
                 sendAjaxFormLaravel($form, {
                     success: function(data){
                         console.log(data);
+                        //change form to edit post instead of new post
                         $form.attr('action', data['action']);
-                        let $inputMethod = $(data['input-method']);
-                        $form.append($inputMethod);
+                        let inputMethod = data['input-method'];
+                        $form.append(inputMethod);
+
+                        //getting generated slug if its different
+                        let $inputSlug = $('#field-slug');
+                        $inputSlug.val(data['post']['slug']);
+
+                        //changing URL for when the user presses F5
                         history.pushState(
                                           data,
                                           "Write Post - Webedia",
@@ -104,7 +150,6 @@ $(document).ready(function() {
                     }
                 });
             }
-            //despite of that, create the other fields
         }, 1000);
 
         changeHrefObserver = new MutationObserver(debouceHrefChange);
