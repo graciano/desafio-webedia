@@ -64,13 +64,50 @@ $(document).ready(function() {
 
     //mutation observer of content editable created bu medium editor
     // to save post via ajax
-    let observer = new MutationObserver(debounceSaveChanges);
+    let saveChangesObserver = new MutationObserver(debounceSaveChanges);
     let editor = document.querySelector(editorSelector);
 
-    //activating observer in editor element
-    observer.observe(editor, {
+    let observerOptions = {
         attributes: true,
         childList: true,
         characterData: true
-    });
+    };
+
+
+    if (!window.Laravel.newPost) {
+        //activating observer in editor element
+        saveChangesObserver.observe(editor, observerOptions);
+    } else { 
+        //handling new post page
+        let changeHrefObserver;
+        let debouceHrefChange = debounce(function() {
+            let $form = $("#form-post");
+            let $inputHtml = $form.find("input[name='html_content']");
+            let text = $inputHtml.text();
+            // save the post if it's bigger than 300 characters and
+            // change the window to a edit post one
+            if (text.length > 300) {
+                sendAjaxFormLaravel($form, {
+                    success: function(data){
+                        console.log(data);
+                        $form.attr('action', data['action']);
+                        let $inputMethod = $(data['input-method']);
+                        $form.append($inputMethod);
+                        history.pushState(
+                                          data,
+                                          "Write Post - Webedia",
+                                          data['edit-url']
+                                          );
+                        //now that is an edit post page, swap the observers
+                        changeHrefObserver.disconnect();
+                        saveChangesObserver.observe(editor, observerOptions);
+                    }
+                });
+            }
+            //despite of that, create the other fields
+        }, 1000);
+
+        changeHrefObserver = new MutationObserver(debouceHrefChange);
+        changeHrefObserver.observe(editor, observerOptions);
+    }
 });

@@ -19,6 +19,7 @@
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
+            'newPost' => false,
         ]) !!};
     </script>
 </head>

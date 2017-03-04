@@ -31,6 +31,8 @@ class PostController extends Controller
         $post->save();
         return response()->json([
                                 'post'=>$post->toArray(),
+                                'edit-url'=>$post->toArray(),
+                                'input-method'=>input_method('PUT'),
                                 'action'=>route('post.edit', $post->id)
                                 ]);
     }

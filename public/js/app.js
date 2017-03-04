@@ -10361,15 +10361,47 @@ $(document).ready(function () {
 
     //mutation observer of content editable created bu medium editor
     // to save post via ajax
-    var observer = new MutationObserver(debounceSaveChanges);
+    var saveChangesObserver = new MutationObserver(debounceSaveChanges);
     var editor = document.querySelector(editorSelector);
 
-    //activating observer in editor element
-    observer.observe(editor, {
+    var observerOptions = {
         attributes: true,
         childList: true,
         characterData: true
-    });
+    };
+
+    if (!window.Laravel.newPost) {
+        //activating observer in editor element
+        saveChangesObserver.observe(editor, observerOptions);
+    } else {
+        //handling new post page
+        var changeHrefObserver = void 0;
+        var debouceHrefChange = debounce(function () {
+            var $form = $("#form-post");
+            var $inputHtml = $form.find("input[name='html_content']");
+            var text = $inputHtml.text();
+            // save the post if it's bigger than 300 characters and
+            // change the window to a edit post one
+            if (text.length > 300) {
+                sendAjaxFormLaravel($form, {
+                    success: function success(data) {
+                        console.log(data);
+                        $form.attr('action', data['action']);
+                        var $inputMethod = $(data['input-method']);
+                        $form.append($inputMethod);
+                        history.pushState(data, "Write Post - Webedia", data['edit-url']);
+                        //now that is an edit post page, swap the observers
+                        changeHrefObserver.disconnect();
+                        saveChangesObserver.observe(editor, observerOptions);
+                    }
+                });
+            }
+            //despite of that, create the other fields
+        }, 1000);
+
+        changeHrefObserver = new MutationObserver(debouceHrefChange);
+        changeHrefObserver.observe(editor, observerOptions);
+    }
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 

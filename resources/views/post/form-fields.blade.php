@@ -15,6 +15,6 @@
 <br><br>
 <input type="hidden" name="html_content" value="{{ input_value($post, 'html_content') }}">
 <h2>Conteúdo:</h2>
-<div id="post-editor">{!! $post->html_content !!}</div>
+<div id="post-editor">@if(!empty($post)){!! $post->html_content !!}@endif</div>
 <br><br>
 <button type="submit">Publish</button>

@@ -14,7 +14,7 @@
         <br>
         <a href="{{ route('dashboard') }}">Dashboard</a>
         <br>
-        <a href="{{-- route('post.new') --}}">New post</a>
+        <a href="{{ route('post.create') }}">New post</a>
         @yield('subcontent')
     </div>
 @endsection
