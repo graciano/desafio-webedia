@@ -1,18 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
-@section('content')
-<div class="component">
-    <header>
-        <h1>Welcome, {{ Auth::user()->name }}</h1>
-        <p>
-            <img src="{{Auth::user()->avatar }}" alt="Your photo" class="avatar"/>
-            <br>
-            <a href="{{ url('/logout') }}">Logout</a>
-        </p>
-    </header>
-    <a href="{{ route('home') }}">See site</a>
-    <br>
-    <a href="{{-- route('post.new') --}}">New post</a>
+@section('subcontent') 
     <h2>Posts</h2>
     <ul>
         @forelse($posts as $post)
@@ -26,5 +14,4 @@
         @endforelse
     </ul>
     {!! $posts->links() !!}
-</div>
 @endsection

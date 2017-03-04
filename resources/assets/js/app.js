@@ -2,7 +2,7 @@
 
 //dependencies from webpack
 window.$ = window.jQuery = require('jquery');
-let MediumEditor = require('medium-editor');
+const MediumEditor = require('medium-editor');
 const debounce = require('debounce');
 
 //function to send any form in laravel
