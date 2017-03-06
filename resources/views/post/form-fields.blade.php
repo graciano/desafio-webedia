@@ -14,7 +14,7 @@
 <input id="field-lead" type="text" data-length="50" name="lead" value="{{ input_value($post, 'lead') }}">
 <br><br>
 <input type="hidden" name="html_content" value="{{ input_value($post, 'html_content') }}">
-<h2>Conteúdo:</h2>
+<h2>Post content:</h2>
 <div id="post-editor">@if(!empty($post)){!! $post->html_content !!}@endif</div>
 <br><br>
 <button type="submit">Publish</button>
