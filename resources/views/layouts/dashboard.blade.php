@@ -4,11 +4,12 @@
     <div class="component">
         <header>
             <h1>Welcome, {{ Auth::user()->name }}</h1>
-            <p>
+            <form action="{{ url('/logout') }}" method="POST" class="logout">
                 <img src="{{Auth::user()->avatar }}" alt="Your photo" class="avatar"/>
                 <br>
-                <a href="{{ url('/logout') }}">Logout</a>
-            </p>
+                {!! csrf_field() !!}
+                <button  type="submit">Logout</button>
+            </form>
         </header>
         <a href="{{ route('home') }}">See site</a>
         <br>
