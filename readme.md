@@ -29,4 +29,5 @@ E finalmente, para rodar o projeto, `php artisan serve` e acessar em [localhost:
 
 Para fazer login, basta acessar a página de login em [localhost:8000/login](http://localhost:8000/login) que depois você será redirecionado para a dashboard, em [http://app.dev:8000/dashboard](http://app.dev:8000/dashboard). 
 
-Na dashboard, os posts estarão listados e ao clicar no link haverá a tela de edição daquele post.
+Na dashboard, há um cabeçalho com links para o site público, a home da dashboard e para criar um novo post. Além disso, são listados os posts para serem alterados.
+ ![print](http://i.imgur.com/lFf9G6o.png)

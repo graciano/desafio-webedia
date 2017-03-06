@@ -22,9 +22,15 @@
         display: flex;
         justify-content: space-between;      
     }
-    form.logout
-    {
-        text-align: center;
+}
+form.logout {
+    text-align: center;
+}
+
+form.delete-post {
+    display: inline;
+    button {
+        margin-left: 1em;
     }
 }
 
